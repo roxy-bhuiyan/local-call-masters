@@ -5,6 +5,7 @@ import { CTASection } from "@/components/site/CTASection";
 import { Testimonials } from "@/components/site/Testimonials";
 import { SITE, SERVICES } from "@/data/site";
 import { Wrench, Bug, Home as HomeIcon, Droplets, Paintbrush, ArrowRight, Clock, Award, Users, MapPin, Star, ShieldCheck } from "lucide-react";
+import { trackCallClick } from "@/lib/track-call";
 import heroImg from "@/assets/hero-technician.jpg";
 import imgPlumb from "@/assets/service-plumbing.jpg";
 import imgPest from "@/assets/service-pest.jpg";
@@ -48,7 +49,11 @@ function HomePage() {
             <p className="text-lg md:text-xl opacity-95 mb-6">Licensed & insured experts ready 24/7. Speak to a live local technician in under 60 seconds.</p>
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <CallButton size="xl" />
-              <a href={SITE.phoneHref} className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10">
+              <a
+                href={SITE.phoneHref}
+                onClick={() => trackCallClick({ serviceSlug: null, phone: SITE.phone })}
+                className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10"
+              >
                 Get Free Estimate <ArrowRight className="h-5 w-5" />
               </a>
             </div>

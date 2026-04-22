@@ -3,9 +3,10 @@ import { TrustBadges } from "./TrustBadges";
 import { CTASection } from "./CTASection";
 import { Testimonials } from "./Testimonials";
 import { CheckCircle2, AlertTriangle, ShieldCheck, Clock, DollarSign, Wrench, Phone, Star } from "lucide-react";
-import { SITE } from "@/data/site";
+import { SITE, getServicePhone, type ServiceSlug } from "@/data/site";
 
 export interface ServicePageProps {
+  dept: ServiceSlug;
   badge: string;
   title: string;
   subtitle: string;
@@ -19,6 +20,7 @@ export interface ServicePageProps {
 const iconMap = { Clock, ShieldCheck, DollarSign, Wrench };
 
 export function ServicePage(p: ServicePageProps) {
+  const { phone, phoneHref } = getServicePhone(p.dept);
   return (
     <main className="bg-white">
       {/* HERO */}
@@ -29,9 +31,13 @@ export function ServicePage(p: ServicePageProps) {
             <span className="inline-block px-3 py-1 rounded-full bg-accent text-accent-foreground font-bold text-xs uppercase tracking-wider mb-4">{p.badge}</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">{p.title}</h1>
             <p className="text-lg md:text-xl opacity-95 mb-6">{p.subtitle}</p>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/25 px-4 py-2 text-sm font-semibold">
+              <span className="inline-block h-2 w-2 rounded-full bg-success animate-badge-blink" />
+              Direct {SITE.name} {p.title.split(" ")[0]} line: <a href={phoneHref} className="underline font-extrabold">{phone}</a>
+            </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <CallButton size="xl" />
-              <a href={SITE.phoneHref} className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10">
+              <CallButton size="xl" phone={phone} phoneHref={phoneHref} />
+              <a href={phoneHref} className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10">
                 <Clock className="h-5 w-5" /> Same-Day Service
               </a>
             </div>
@@ -83,7 +89,7 @@ export function ServicePage(p: ServicePageProps) {
               <li key={s} className="flex items-start gap-3"><CheckCircle2 className="h-6 w-6 text-success shrink-0 mt-0.5" /><span className="font-medium text-foreground">{s}</span></li>
               ))}
             </ul>
-            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" /></div>
+            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" phone={phone} phoneHref={phoneHref} /></div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {p.benefits.map((b) => {

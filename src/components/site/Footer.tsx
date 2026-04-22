@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Clock, Shield } from "lucide-react";
 import { SITE, SERVICES } from "@/data/site";
+import { trackCallClick } from "@/lib/track-call";
 
 export function Footer() {
   return (
@@ -9,7 +10,11 @@ export function Footer() {
         <div>
           <h3 className="text-xl font-extrabold mb-3">{SITE.name}</h3>
           <p className="text-sm text-primary-foreground/90">Licensed, insured & locally trusted home service experts available 24/7.</p>
-          <a href={SITE.phoneHref} className="mt-4 inline-flex items-center gap-2 text-2xl font-extrabold text-accent">
+          <a
+            href={SITE.phoneHref}
+            onClick={() => trackCallClick({ serviceSlug: null, phone: SITE.phone })}
+            className="mt-4 inline-flex items-center gap-2 text-2xl font-extrabold text-accent"
+          >
             <Phone className="h-6 w-6" fill="currentColor" />{SITE.phone}
           </a>
         </div>

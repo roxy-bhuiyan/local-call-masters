@@ -1,6 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { TopBar } from "@/components/site/TopBar";
+import { Footer } from "@/components/site/Footer";
+import { StickyCallBar } from "@/components/site/StickyCallBar";
 
 function NotFoundComponent() {
   return (
@@ -65,5 +68,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <div className="min-h-screen flex flex-col bg-background">
+      <TopBar />
+      <div className="flex-1 pb-20 md:pb-0">
+        <Outlet />
+      </div>
+      <Footer />
+      <StickyCallBar />
+    </div>
+  );
 }

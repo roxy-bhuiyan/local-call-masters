@@ -89,10 +89,10 @@ export function ServicePage(p: ServicePageProps) {
             {p.benefits.map((b) => {
               const Icon = iconMap[b.icon];
               return (
-                <div key={b.title} className="bg-white rounded-2xl p-5 shadow-[var(--shadow-card)]">
+                <div key={b.title} className="bg-white border border-border rounded-2xl p-5 shadow-[var(--shadow-card)]">
                   <div className="h-12 w-12 rounded-xl bg-[var(--gradient-hero)] flex items-center justify-center text-white mb-3"><Icon className="h-6 w-6" /></div>
-                  <h3 className="font-bold mb-1">{b.title}</h3>
-                  <p className="text-sm text-muted-foreground">{b.text}</p>
+                  <h3 className="font-bold mb-1 text-foreground">{b.title}</h3>
+                  <p className="text-sm text-foreground/80">{b.text}</p>
                 </div>
               );
             })}
@@ -109,7 +109,7 @@ export function ServicePage(p: ServicePageProps) {
         <div className="mx-auto max-w-3xl px-4">
           <div className="text-center mb-10">
             <p className="text-accent font-bold uppercase tracking-wider text-sm mb-2">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold">Common Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Common Questions</h2>
           </div>
           <div className="space-y-3">
             {p.faqs.map((f) => (

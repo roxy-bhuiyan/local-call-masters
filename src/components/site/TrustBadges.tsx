@@ -18,7 +18,7 @@ export function TrustBadges() {
             </div>
             <div>
               <div className="font-bold text-sm md:text-base text-foreground leading-tight">{it.label}</div>
-              <div className="text-xs text-muted-foreground">{it.sub}</div>
+              <div className="text-xs text-foreground/75">{it.sub}</div>
             </div>
           </div>
         ))}

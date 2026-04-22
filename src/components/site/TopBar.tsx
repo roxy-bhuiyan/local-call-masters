@@ -11,12 +11,14 @@ export function TopBar() {
       <div className="bg-primary text-primary-foreground text-sm">
         <div className="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
+            <span className="inline-block h-2 w-2 rounded-full bg-success animate-badge-blink" />
             <MapPin className="h-4 w-4" />
             <span className="hidden sm:inline">{SITE.areas}</span>
             <span className="sm:hidden">24/7 Service</span>
           </div>
-          <a href={SITE.phoneHref} className="flex items-center gap-2 font-semibold hover:underline">
-            <Phone className="h-4 w-4" fill="currentColor" />
+          <a href={SITE.phoneHref} className="flex items-center gap-2 font-extrabold text-base hover:underline">
+            <Phone className="h-4 w-4 animate-phone-ring" fill="currentColor" />
+            <span className="hidden xs:inline uppercase tracking-wide text-[11px] opacity-90">Call:</span>
             <span>{SITE.phone}</span>
           </a>
         </div>

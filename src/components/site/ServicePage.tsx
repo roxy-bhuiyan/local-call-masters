@@ -36,7 +36,7 @@ export function ServicePage(p: ServicePageProps) {
               Direct {SITE.name} {p.title.split(" ")[0]} line: <a href={phoneHref} className="underline font-extrabold">{phone}</a>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <CallButton size="xl" phone={phone} phoneHref={phoneHref} />
+              <CallButton size="xl" phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} />
               <a href={phoneHref} className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10">
                 <Clock className="h-5 w-5" /> Same-Day Service
               </a>
@@ -89,7 +89,7 @@ export function ServicePage(p: ServicePageProps) {
               <li key={s} className="flex items-start gap-3"><CheckCircle2 className="h-6 w-6 text-success shrink-0 mt-0.5" /><span className="font-medium text-foreground">{s}</span></li>
               ))}
             </ul>
-            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" phone={phone} phoneHref={phoneHref} /></div>
+            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} /></div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {p.benefits.map((b) => {
@@ -106,7 +106,7 @@ export function ServicePage(p: ServicePageProps) {
         </div>
       </section>
 
-      <CTASection title="Ready to Fix the Problem?" subtitle="One quick call and we'll be on the way. Live dispatch, no voicemails." phone={phone} phoneHref={phoneHref} />
+      <CTASection title="Ready to Fix the Problem?" subtitle="One quick call and we'll be on the way. Live dispatch, no voicemails." phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} />
 
       <Testimonials />
 
@@ -130,7 +130,7 @@ export function ServicePage(p: ServicePageProps) {
           </div>
           <div className="mt-10 text-center">
             <p className="text-foreground/80 mb-4">Still have questions? Talk to a real person right now.</p>
-            <CallButton size="lg" label="Call Now" phone={phone} phoneHref={phoneHref} />
+            <CallButton size="lg" label="Call Now" phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} />
           </div>
         </div>
       </section>

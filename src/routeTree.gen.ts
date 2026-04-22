@@ -13,8 +13,15 @@ import { Route as WaterDamageRouteImport } from './routes/water-damage'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as PlumbingRouteImport } from './routes/plumbing'
 import { Route as PestControlRouteImport } from './routes/pest-control'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as FloorCoatingRouteImport } from './routes/floor-coating'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminFaqsRouteImport } from './routes/admin.faqs'
 
 const WaterDamageRoute = WaterDamageRouteImport.update({
   id: '/water-damage',
@@ -36,9 +43,19 @@ const PestControlRoute = PestControlRouteImport.update({
   path: '/pest-control',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FloorCoatingRoute = FloorCoatingRouteImport.update({
   id: '/floor-coating',
   path: '/floor-coating',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -46,62 +63,129 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFaqsRoute = AdminFaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/floor-coating': typeof FloorCoatingRoute
+  '/login': typeof LoginRoute
   '/pest-control': typeof PestControlRoute
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/floor-coating': typeof FloorCoatingRoute
+  '/login': typeof LoginRoute
   '/pest-control': typeof PestControlRoute
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/floor-coating': typeof FloorCoatingRoute
+  '/login': typeof LoginRoute
   '/pest-control': typeof PestControlRoute
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/floor-coating'
+    | '/login'
     | '/pest-control'
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/faqs'
+    | '/admin/leads'
+    | '/admin/services'
+    | '/admin/testimonials'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/floor-coating'
+    | '/login'
     | '/pest-control'
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/faqs'
+    | '/admin/leads'
+    | '/admin/services'
+    | '/admin/testimonials'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/floor-coating'
+    | '/login'
     | '/pest-control'
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/faqs'
+    | '/admin/leads'
+    | '/admin/services'
+    | '/admin/testimonials'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   FloorCoatingRoute: typeof FloorCoatingRoute
+  LoginRoute: typeof LoginRoute
   PestControlRoute: typeof PestControlRoute
   PlumbingRoute: typeof PlumbingRoute
   RoofingRoute: typeof RoofingRoute
@@ -138,11 +222,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PestControlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/floor-coating': {
       id: '/floor-coating'
       path: '/floor-coating'
       fullPath: '/floor-coating'
       preLoaderRoute: typeof FloorCoatingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -152,12 +250,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/faqs': {
+      id: '/admin/faqs'
+      path: '/faqs'
+      fullPath: '/admin/faqs'
+      preLoaderRoute: typeof AdminFaqsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminFaqsRoute: typeof AdminFaqsRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminServicesRoute: typeof AdminServicesRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminFaqsRoute: AdminFaqsRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
+  AdminServicesRoute: AdminServicesRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   FloorCoatingRoute: FloorCoatingRoute,
+  LoginRoute: LoginRoute,
   PestControlRoute: PestControlRoute,
   PlumbingRoute: PlumbingRoute,
   RoofingRoute: RoofingRoute,
@@ -166,12 +319,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

@@ -6,9 +6,10 @@ interface Props {
   subtitle?: string;
   phone?: string;
   phoneHref?: string;
+  serviceSlug?: string | null;
 }
 
-export function CTASection({ title = "Need Help Right Now?", subtitle = "Call now and speak to a live expert — no waiting, no voicemail.", phone, phoneHref }: Props) {
+export function CTASection({ title = "Need Help Right Now?", subtitle = "Call now and speak to a live expert — no waiting, no voicemail.", phone, phoneHref, serviceSlug }: Props) {
   const displayPhone = phone ?? SITE.phone;
   return (
     <section className="relative py-16 md:py-20 bg-hero-gradient text-white overflow-hidden">
@@ -17,7 +18,7 @@ export function CTASection({ title = "Need Help Right Now?", subtitle = "Call no
         <p className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground font-bold text-xs uppercase tracking-wider mb-4">Available Now</p>
         <h2 className="text-3xl md:text-5xl font-extrabold mb-4">{title}</h2>
         <p className="text-lg md:text-xl opacity-90 mb-8">{subtitle}</p>
-        <CallButton size="xl" phone={phone} phoneHref={phoneHref} />
+        <CallButton size="xl" phone={phone} phoneHref={phoneHref} serviceSlug={serviceSlug} />
         <p className="mt-4 text-sm opacity-80">Or dial {displayPhone} · 24/7 Live Dispatch</p>
       </div>
     </section>

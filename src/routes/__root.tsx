@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 import { TopBar } from "@/components/site/TopBar";
@@ -68,14 +68,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const chrome = !location.pathname.startsWith("/admin") && location.pathname !== "/login";
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <TopBar />
-      <div className="flex-1 pb-20 md:pb-0">
+      {chrome && <TopBar />}
+      <div className={`flex-1 ${chrome ? "pb-20 md:pb-0" : ""}`}>
         <Outlet />
       </div>
-      <Footer />
-      <StickyCallBar />
+      {chrome && <Footer />}
+      {chrome && <StickyCallBar />}
     </div>
   );
 }

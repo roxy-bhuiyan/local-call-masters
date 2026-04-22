@@ -1,6 +1,7 @@
 import { Phone } from "lucide-react";
 import { SITE } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { trackCallClick } from "@/lib/track-call";
 
 interface Props {
   label?: string;
@@ -10,9 +11,10 @@ interface Props {
   fullWidth?: boolean;
   phone?: string;
   phoneHref?: string;
+  serviceSlug?: string | null;
 }
 
-export function CallButton({ label = "Call Now", size = "md", variant = "accent", className, fullWidth, phone, phoneHref }: Props) {
+export function CallButton({ label = "Call Now", size = "md", variant = "accent", className, fullWidth, phone, phoneHref, serviceSlug }: Props) {
   const displayPhone = phone ?? SITE.phone;
   const displayHref = phoneHref ?? SITE.phoneHref;
   const sizes = {
@@ -29,6 +31,7 @@ export function CallButton({ label = "Call Now", size = "md", variant = "accent"
   return (
     <a
       href={displayHref}
+      onClick={() => trackCallClick({ serviceSlug: serviceSlug ?? null, phone: displayPhone })}
       className={cn(
         "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap animate-call-pulse",
         sizes[size],

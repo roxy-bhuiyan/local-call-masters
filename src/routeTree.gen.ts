@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WaterDamageRouteImport } from './routes/water-damage'
+import { Route as RoofingRouteImport } from './routes/roofing'
+import { Route as PlumbingRouteImport } from './routes/plumbing'
+import { Route as PestControlRouteImport } from './routes/pest-control'
+import { Route as FloorCoatingRouteImport } from './routes/floor-coating'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WaterDamageRoute = WaterDamageRouteImport.update({
+  id: '/water-damage',
+  path: '/water-damage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoofingRoute = RoofingRouteImport.update({
+  id: '/roofing',
+  path: '/roofing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlumbingRoute = PlumbingRouteImport.update({
+  id: '/plumbing',
+  path: '/plumbing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PestControlRoute = PestControlRouteImport.update({
+  id: '/pest-control',
+  path: '/pest-control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FloorCoatingRoute = FloorCoatingRouteImport.update({
+  id: '/floor-coating',
+  path: '/floor-coating',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,102 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/floor-coating': typeof FloorCoatingRoute
+  '/pest-control': typeof PestControlRoute
+  '/plumbing': typeof PlumbingRoute
+  '/roofing': typeof RoofingRoute
+  '/water-damage': typeof WaterDamageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/floor-coating': typeof FloorCoatingRoute
+  '/pest-control': typeof PestControlRoute
+  '/plumbing': typeof PlumbingRoute
+  '/roofing': typeof RoofingRoute
+  '/water-damage': typeof WaterDamageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/floor-coating': typeof FloorCoatingRoute
+  '/pest-control': typeof PestControlRoute
+  '/plumbing': typeof PlumbingRoute
+  '/roofing': typeof RoofingRoute
+  '/water-damage': typeof WaterDamageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/floor-coating'
+    | '/pest-control'
+    | '/plumbing'
+    | '/roofing'
+    | '/water-damage'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/floor-coating'
+    | '/pest-control'
+    | '/plumbing'
+    | '/roofing'
+    | '/water-damage'
+  id:
+    | '__root__'
+    | '/'
+    | '/floor-coating'
+    | '/pest-control'
+    | '/plumbing'
+    | '/roofing'
+    | '/water-damage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FloorCoatingRoute: typeof FloorCoatingRoute
+  PestControlRoute: typeof PestControlRoute
+  PlumbingRoute: typeof PlumbingRoute
+  RoofingRoute: typeof RoofingRoute
+  WaterDamageRoute: typeof WaterDamageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/water-damage': {
+      id: '/water-damage'
+      path: '/water-damage'
+      fullPath: '/water-damage'
+      preLoaderRoute: typeof WaterDamageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roofing': {
+      id: '/roofing'
+      path: '/roofing'
+      fullPath: '/roofing'
+      preLoaderRoute: typeof RoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plumbing': {
+      id: '/plumbing'
+      path: '/plumbing'
+      fullPath: '/plumbing'
+      preLoaderRoute: typeof PlumbingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pest-control': {
+      id: '/pest-control'
+      path: '/pest-control'
+      fullPath: '/pest-control'
+      preLoaderRoute: typeof PestControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/floor-coating': {
+      id: '/floor-coating'
+      path: '/floor-coating'
+      fullPath: '/floor-coating'
+      preLoaderRoute: typeof FloorCoatingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FloorCoatingRoute: FloorCoatingRoute,
+  PestControlRoute: PestControlRoute,
+  PlumbingRoute: PlumbingRoute,
+  RoofingRoute: RoofingRoute,
+  WaterDamageRoute: WaterDamageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

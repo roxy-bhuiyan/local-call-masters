@@ -60,9 +60,9 @@ function HomePage() {
           </div>
           <div className="relative">
             <img src={heroImg} alt="Friendly home service technician" width={1280} height={960} className="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" />
-            <div className="absolute -bottom-4 -right-4 bg-white text-foreground rounded-xl px-4 py-3 shadow-xl">
+            <div className="absolute -bottom-4 -right-4 bg-white text-foreground rounded-xl px-4 py-3 shadow-xl border border-border">
               <div className="text-2xl font-extrabold text-primary">{SITE.jobsCompleted}</div>
-              <div className="text-xs text-muted-foreground">Jobs completed</div>
+              <div className="text-xs text-foreground/70">Jobs completed</div>
             </div>
           </div>
         </div>

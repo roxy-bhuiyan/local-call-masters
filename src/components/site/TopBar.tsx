@@ -24,7 +24,7 @@ export function TopBar() {
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border shadow-sm">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2 font-extrabold text-lg md:text-xl text-primary">
-            <div className="h-9 w-9 rounded-lg bg-[var(--gradient-hero)] flex items-center justify-center text-white">
+            <div className="h-9 w-9 rounded-lg bg-hero-gradient flex items-center justify-center text-white">
               <Phone className="h-5 w-5" fill="currentColor" />
             </div>
             <span>{SITE.name}</span>

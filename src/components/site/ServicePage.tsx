@@ -22,7 +22,7 @@ export function ServicePage(p: ServicePageProps) {
   return (
     <main className="bg-white">
       {/* HERO */}
-      <section className="relative bg-[var(--gradient-hero)] text-white overflow-hidden">
+      <section className="relative bg-hero-gradient text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 80% 20%, white 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
         <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-20 grid lg:grid-cols-2 gap-10 items-center">
           <div>
@@ -90,7 +90,7 @@ export function ServicePage(p: ServicePageProps) {
               const Icon = iconMap[b.icon];
               return (
                 <div key={b.title} className="bg-white border border-border rounded-2xl p-5 shadow-[var(--shadow-card)]">
-                  <div className="h-12 w-12 rounded-xl bg-[var(--gradient-hero)] flex items-center justify-center text-white mb-3"><Icon className="h-6 w-6" /></div>
+                  <div className="h-12 w-12 rounded-xl bg-hero-gradient flex items-center justify-center text-white mb-3"><Icon className="h-6 w-6" /></div>
                   <h3 className="font-bold mb-1 text-foreground">{b.title}</h3>
                   <p className="text-sm text-foreground/80">{b.text}</p>
                 </div>

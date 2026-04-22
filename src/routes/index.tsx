@@ -37,7 +37,7 @@ function HomePage() {
   return (
     <main>
       {/* HERO */}
-      <section className="relative bg-[var(--gradient-hero)] text-white overflow-hidden">
+      <section className="relative bg-hero-gradient text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 80% 20%, white 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
         <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-20 grid lg:grid-cols-2 gap-10 items-center">
           <div>
@@ -136,7 +136,7 @@ function HomePage() {
               { icon: MapPin, t: "Local Experts", d: "Family-owned and proud to serve our neighbors." },
             ].map((it) => (
               <div key={it.t} className="bg-card border border-border rounded-2xl p-6 text-center shadow-[var(--shadow-card)]">
-                <div className="mx-auto h-14 w-14 rounded-full bg-[var(--gradient-hero)] flex items-center justify-center text-white mb-4"><it.icon className="h-7 w-7" /></div>
+                <div className="mx-auto h-14 w-14 rounded-full bg-hero-gradient flex items-center justify-center text-white mb-4"><it.icon className="h-7 w-7" /></div>
                 <h3 className="font-extrabold mb-1 text-foreground">{it.t}</h3>
                 <p className="text-sm text-foreground/80">{it.d}</p>
               </div>

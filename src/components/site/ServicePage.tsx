@@ -57,8 +57,8 @@ export function ServicePage(p: ServicePageProps) {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-10">
             <p className="text-accent font-bold uppercase tracking-wider text-sm mb-2">We Understand</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold">Sound Familiar?</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">You shouldn't have to deal with this. Here's what our customers tell us before they call:</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Sound Familiar?</h2>
+            <p className="text-foreground/80 mt-2 max-w-2xl mx-auto">You shouldn't have to deal with this. Here's what our customers tell us before they call:</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {p.problems.map((prob) => (
@@ -76,11 +76,11 @@ export function ServicePage(p: ServicePageProps) {
         <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <p className="text-accent font-bold uppercase tracking-wider text-sm mb-2">Our Solution</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Done Right — The First Time</h2>
-            <p className="text-muted-foreground mb-6">Our certified local technicians arrive on time, diagnose the real problem, and fix it with quality parts and upfront pricing. No surprises, no callbacks.</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-foreground">Done Right — The First Time</h2>
+            <p className="text-foreground/80 mb-6">Our certified local technicians arrive on time, diagnose the real problem, and fix it with quality parts and upfront pricing. No surprises, no callbacks.</p>
             <ul className="space-y-3">
               {p.solutions.map((s) => (
-                <li key={s} className="flex items-start gap-3"><CheckCircle2 className="h-6 w-6 text-success shrink-0 mt-0.5" /><span className="font-medium">{s}</span></li>
+              <li key={s} className="flex items-start gap-3"><CheckCircle2 className="h-6 w-6 text-success shrink-0 mt-0.5" /><span className="font-medium text-foreground">{s}</span></li>
               ))}
             </ul>
             <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" /></div>

@@ -4,6 +4,7 @@ import { CTASection } from "./CTASection";
 import { Testimonials } from "./Testimonials";
 import { CheckCircle2, AlertTriangle, ShieldCheck, Clock, DollarSign, Wrench, Phone, Star } from "lucide-react";
 import { SITE, getServicePhone, type ServiceSlug } from "@/data/site";
+import { trackCallClick } from "@/lib/track-call";
 
 export interface ServicePageProps {
   dept: ServiceSlug;
@@ -33,11 +34,22 @@ export function ServicePage(p: ServicePageProps) {
             <p className="text-lg md:text-xl opacity-95 mb-6">{p.subtitle}</p>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/25 px-4 py-2 text-sm font-semibold">
               <span className="inline-block h-2 w-2 rounded-full bg-success animate-badge-blink" />
-              Direct {SITE.name} {p.title.split(" ")[0]} line: <a href={phoneHref} className="underline font-extrabold">{phone}</a>
+              Direct {SITE.name} {p.title.split(" ")[0]} line:{" "}
+              <a
+                href={phoneHref}
+                onClick={() => trackCallClick({ serviceSlug: p.dept, phone })}
+                className="underline font-extrabold"
+              >
+                {phone}
+              </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <CallButton size="xl" phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} />
-              <a href={phoneHref} className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10">
+              <a
+                href={phoneHref}
+                onClick={() => trackCallClick({ serviceSlug: p.dept, phone })}
+                className="inline-flex items-center justify-center gap-2 font-semibold border-2 border-white/40 px-6 py-4 rounded-full hover:bg-white/10"
+              >
                 <Clock className="h-5 w-5" /> Same-Day Service
               </a>
             </div>

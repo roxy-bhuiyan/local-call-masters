@@ -23,6 +23,7 @@ import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminFaqsRouteImport } from './routes/admin.faqs'
+import { Route as AdminAbTestsRouteImport } from './routes/admin.ab-tests'
 
 const WaterDamageRoute = WaterDamageRouteImport.update({
   id: '/water-damage',
@@ -94,6 +95,11 @@ const AdminFaqsRoute = AdminFaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAbTestsRoute = AdminAbTestsRouteImport.update({
+  id: '/ab-tests',
+  path: '/ab-tests',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/ab-tests': typeof AdminAbTestsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -119,6 +126,7 @@ export interface FileRoutesByTo {
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/ab-tests': typeof AdminAbTestsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/plumbing': typeof PlumbingRoute
   '/roofing': typeof RoofingRoute
   '/water-damage': typeof WaterDamageRoute
+  '/admin/ab-tests': typeof AdminAbTestsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/ab-tests'
     | '/admin/faqs'
     | '/admin/leads'
     | '/admin/reports'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/ab-tests'
     | '/admin/faqs'
     | '/admin/leads'
     | '/admin/reports'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/plumbing'
     | '/roofing'
     | '/water-damage'
+    | '/admin/ab-tests'
     | '/admin/faqs'
     | '/admin/leads'
     | '/admin/reports'
@@ -304,10 +316,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminFaqsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/ab-tests': {
+      id: '/admin/ab-tests'
+      path: '/ab-tests'
+      fullPath: '/admin/ab-tests'
+      preLoaderRoute: typeof AdminAbTestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAbTestsRoute: typeof AdminAbTestsRoute
   AdminFaqsRoute: typeof AdminFaqsRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminReportsRoute: typeof AdminReportsRoute
@@ -317,6 +337,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAbTestsRoute: AdminAbTestsRoute,
   AdminFaqsRoute: AdminFaqsRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminReportsRoute: AdminReportsRoute,

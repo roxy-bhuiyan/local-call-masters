@@ -4,6 +4,7 @@ import appCss from "../styles.css?url";
 import { TopBar } from "@/components/site/TopBar";
 import { Footer } from "@/components/site/Footer";
 import { StickyCallBar } from "@/components/site/StickyCallBar";
+import { googleAdsScriptUrl, googleAdsInitSnippet } from "@/lib/google-ads";
 
 function NotFoundComponent() {
   return (
@@ -46,6 +47,14 @@ export const Route = createRootRoute({
         rel: "stylesheet",
         href: appCss,
       },
+    ],
+    scripts: [
+      ...(googleAdsScriptUrl()
+        ? [{ src: googleAdsScriptUrl() as string, async: true }]
+        : []),
+      ...(googleAdsInitSnippet()
+        ? [{ children: googleAdsInitSnippet() as string }]
+        : []),
     ],
   }),
   shellComponent: RootShell,

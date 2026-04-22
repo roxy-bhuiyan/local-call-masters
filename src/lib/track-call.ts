@@ -1,10 +1,17 @@
 import { supabase } from "@/integrations/supabase/client";
+import { trackGoogleAdsCallConversion } from "@/lib/google-ads";
 
 export async function trackCallClick(opts: {
   serviceSlug?: string | null;
   phone?: string | null;
 }) {
   if (typeof window === "undefined") return;
+  // Fire Google Ads conversion immediately so it isn't lost when the
+  // browser navigates to the tel: URL.
+  trackGoogleAdsCallConversion({
+    serviceSlug: opts.serviceSlug ?? null,
+    phone: opts.phone ?? null,
+  });
   try {
     await supabase.from("call_leads").insert({
       service_slug: opts.serviceSlug ?? null,

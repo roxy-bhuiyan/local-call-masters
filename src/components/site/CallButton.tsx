@@ -18,7 +18,7 @@ export function CallButton({ label = "Call Now", size = "md", variant = "accent"
     xl: "px-8 py-5 text-xl md:text-2xl gap-3",
   };
   const variants = {
-    accent: "bg-[var(--gradient-cta)] text-accent-foreground shadow-[var(--shadow-cta)] hover:brightness-110",
+    accent: "bg-cta-gradient text-accent-foreground shadow-[var(--shadow-cta)] hover:brightness-110",
     white: "bg-white text-primary hover:bg-white/90 shadow-lg",
     outline: "border-2 border-white text-white hover:bg-white hover:text-primary",
   };

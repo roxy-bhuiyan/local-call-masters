@@ -154,3 +154,13 @@
     color: var(--color-foreground);
   }
 }
+
+@layer utilities {
+  .bg-hero-gradient {
+    background-image: var(--gradient-hero);
+  }
+
+  .bg-cta-gradient {
+    background-image: var(--gradient-cta);
+  }
+}

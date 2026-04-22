@@ -26,14 +26,14 @@ export function CallButton({ label = "Call Now", size = "md", variant = "accent"
     <a
       href={SITE.phoneHref}
       className={cn(
-        "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap",
+        "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap animate-call-pulse",
         sizes[size],
         variants[variant],
         fullWidth && "w-full",
         className
       )}
     >
-      <Phone className={size === "xl" ? "h-7 w-7" : size === "lg" ? "h-6 w-6" : "h-5 w-5"} fill="currentColor" />
+      <Phone className={cn("animate-phone-ring", size === "xl" ? "h-7 w-7" : size === "lg" ? "h-6 w-6" : "h-5 w-5")} fill="currentColor" />
       <span>{label}</span>
       {(size === "lg" || size === "xl") && <span className="hidden sm:inline">— {SITE.phone}</span>}
     </a>

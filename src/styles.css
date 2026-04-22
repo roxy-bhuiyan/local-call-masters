@@ -164,3 +164,35 @@
     background-image: var(--gradient-cta);
   }
 }
+
+/* ===== Call CTA Attention Animations ===== */
+@keyframes call-pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.7 0.2 50 / 0.7), 0 10px 30px -8px oklch(0.7 0.2 50 / 0.45); }
+  70% { box-shadow: 0 0 0 18px oklch(0.7 0.2 50 / 0), 0 10px 30px -8px oklch(0.7 0.2 50 / 0.45); }
+  100% { box-shadow: 0 0 0 0 oklch(0.7 0.2 50 / 0), 0 10px 30px -8px oklch(0.7 0.2 50 / 0.45); }
+}
+@keyframes phone-ring {
+  0%, 60%, 100% { transform: rotate(0); }
+  5% { transform: rotate(-18deg); }
+  10% { transform: rotate(18deg); }
+  15% { transform: rotate(-15deg); }
+  20% { transform: rotate(15deg); }
+  25% { transform: rotate(-10deg); }
+  30% { transform: rotate(10deg); }
+  35% { transform: rotate(-6deg); }
+  40% { transform: rotate(6deg); }
+  45% { transform: rotate(0); }
+}
+@keyframes call-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes badge-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.15); }
+}
+
+.animate-call-pulse { animation: call-pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-phone-ring { animation: phone-ring 2s ease-in-out infinite; transform-origin: 50% 50%; }
+.animate-call-bounce { animation: call-bounce 1.4s ease-in-out infinite; }
+.animate-badge-blink { animation: badge-blink 1s ease-in-out infinite; }

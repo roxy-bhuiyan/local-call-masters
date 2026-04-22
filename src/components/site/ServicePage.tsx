@@ -113,27 +113,27 @@ export function ServicePage(p: ServicePageProps) {
           </div>
           <div className="space-y-3">
             {p.faqs.map((f) => (
-              <details key={f.q} className="group bg-secondary rounded-xl p-5 border border-border">
+              <details key={f.q} className="group bg-white rounded-xl p-5 border-2 border-border shadow-[var(--shadow-card)]">
                 <summary className="cursor-pointer font-bold text-foreground list-none flex justify-between items-center gap-4">
                   {f.q}
                   <span className="text-primary text-2xl group-open:rotate-45 transition-transform">+</span>
                 </summary>
-                <p className="mt-3 text-muted-foreground">{f.a}</p>
+                <p className="mt-3 text-foreground/85 leading-relaxed">{f.a}</p>
               </details>
             ))}
           </div>
           <div className="mt-10 text-center">
-            <p className="text-muted-foreground mb-4">Still have questions? Talk to a real person right now.</p>
+            <p className="text-foreground/80 mb-4">Still have questions? Talk to a real person right now.</p>
             <CallButton size="lg" label="Call Now" />
           </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-12 bg-foreground text-white">
+      <section className="py-12 bg-primary-dark text-white">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">Available 24/7 — Call Now</h2>
-          <p className="opacity-80 mb-6">Don't wait until it gets worse. Our team is standing by.</p>
+          <p className="text-white/90 mb-6">Don't wait until it gets worse. Our team is standing by.</p>
           <a href={SITE.phoneHref} className="inline-flex items-center gap-3 text-3xl md:text-5xl font-extrabold text-accent hover:underline">
             <Phone className="h-8 w-8 md:h-12 md:w-12" fill="currentColor" />{SITE.phone}
           </a>

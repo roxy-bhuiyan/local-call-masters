@@ -21,7 +21,7 @@ export function TopBar() {
           </a>
         </div>
       </div>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-border shadow-sm">
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border shadow-sm">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2 font-extrabold text-lg md:text-xl text-primary">
             <div className="h-9 w-9 rounded-lg bg-[var(--gradient-hero)] flex items-center justify-center text-white">
@@ -47,7 +47,7 @@ export function TopBar() {
           </div>
         </div>
         {open && (
-          <div className="lg:hidden border-t border-border bg-white">
+          <div className="lg:hidden border-t border-border bg-card">
             <nav className="flex flex-col px-4 py-2">
               <Link to="/" onClick={() => setOpen(false)} className="py-3 font-semibold border-b border-border">Home</Link>
               {SERVICES.map((s) => (

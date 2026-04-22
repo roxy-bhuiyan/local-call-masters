@@ -88,27 +88,27 @@ function HomePage() {
       <TrustBadges />
 
       {/* SERVICES OVERVIEW */}
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-10">
             <p className="text-accent font-bold uppercase tracking-wider text-sm mb-2">What We Do</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold">Full-Service Home Specialists</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">One trusted local team for every home emergency and upgrade.</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Full-Service Home Specialists</h2>
+            <p className="text-foreground/80 mt-2 max-w-2xl mx-auto">One trusted local team for every home emergency and upgrade.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((s) => {
               const Icon = iconMap[s.icon as keyof typeof iconMap];
               return (
-                <div key={s.slug} className="group bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-xl transition-all">
+                <div key={s.slug} className="group bg-card border border-border rounded-2xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-xl transition-all">
                   <div className="aspect-[16/10] overflow-hidden">
                     <img src={imgMap[s.slug]} alt={s.name} loading="lazy" width={1280} height={800} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center"><Icon className="h-5 w-5" /></div>
-                      <h3 className="text-xl font-extrabold">{s.name}</h3>
+                      <h3 className="text-xl font-extrabold text-foreground">{s.name}</h3>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-4">{s.short}</p>
+                    <p className="text-foreground/80 text-sm mb-4">{s.short}</p>
                     <div className="flex items-center justify-between">
                       <Link to={`/${s.slug}` as string} className="font-bold text-primary hover:underline inline-flex items-center gap-1">Learn More <ArrowRight className="h-4 w-4" /></Link>
                       <CallButton size="sm" label="Call" />
@@ -126,7 +126,7 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-10">
             <p className="text-accent font-bold uppercase tracking-wider text-sm mb-2">Why Choose Us</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold">Local Experts You Can Trust</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Local Experts You Can Trust</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -135,10 +135,10 @@ function HomePage() {
               { icon: Users, t: `${SITE.yearsExperience}+ Years Experience`, d: `${SITE.jobsCompleted} jobs completed in your area.` },
               { icon: MapPin, t: "Local Experts", d: "Family-owned and proud to serve our neighbors." },
             ].map((it) => (
-              <div key={it.t} className="bg-white rounded-2xl p-6 text-center shadow-[var(--shadow-card)]">
+              <div key={it.t} className="bg-card border border-border rounded-2xl p-6 text-center shadow-[var(--shadow-card)]">
                 <div className="mx-auto h-14 w-14 rounded-full bg-[var(--gradient-hero)] flex items-center justify-center text-white mb-4"><it.icon className="h-7 w-7" /></div>
-                <h3 className="font-extrabold mb-1">{it.t}</h3>
-                <p className="text-sm text-muted-foreground">{it.d}</p>
+                <h3 className="font-extrabold mb-1 text-foreground">{it.t}</h3>
+                <p className="text-sm text-foreground/80">{it.d}</p>
               </div>
             ))}
           </div>

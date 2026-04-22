@@ -116,7 +116,7 @@ function HomePage() {
                     <p className="text-foreground/80 text-sm mb-4">{s.short}</p>
                     <div className="flex items-center justify-between">
                       <Link to={`/${s.slug}` as string} className="font-bold text-primary hover:underline inline-flex items-center gap-1">Learn More <ArrowRight className="h-4 w-4" /></Link>
-                      <CallButton size="sm" label="Call" />
+                      <CallButton size="sm" label="Call" fixedLabel />
                     </div>
                   </div>
                 </div>

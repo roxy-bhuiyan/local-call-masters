@@ -101,7 +101,7 @@ export function ServicePage(p: ServicePageProps) {
               <li key={s} className="flex items-start gap-3"><CheckCircle2 className="h-6 w-6 text-success shrink-0 mt-0.5" /><span className="font-medium text-foreground">{s}</span></li>
               ))}
             </ul>
-            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} /></div>
+            <div className="mt-8"><CallButton size="lg" label="Call for Immediate Help" fixedLabel phone={phone} phoneHref={phoneHref} serviceSlug={p.dept} /></div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {p.benefits.map((b) => {

@@ -1,10 +1,12 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { TopBar } from "@/components/site/TopBar";
 import { Footer } from "@/components/site/Footer";
 import { StickyCallBar } from "@/components/site/StickyCallBar";
 import { googleAdsScriptUrl, googleAdsInitSnippet } from "@/lib/google-ads";
+import { logImpressionOnce } from "@/lib/ab-test";
 
 function NotFoundComponent() {
   return (
@@ -79,6 +81,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const location = useLocation();
   const chrome = !location.pathname.startsWith("/admin") && location.pathname !== "/login";
+  useEffect(() => {
+    if (chrome) logImpressionOnce();
+  }, [chrome]);
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {chrome && <TopBar />}

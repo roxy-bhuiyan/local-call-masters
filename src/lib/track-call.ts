@@ -1,11 +1,13 @@
 import { supabase } from "@/integrations/supabase/client";
 import { trackGoogleAdsCallConversion } from "@/lib/google-ads";
+import { getVariants } from "@/lib/ab-test";
 
 export async function trackCallClick(opts: {
   serviceSlug?: string | null;
   phone?: string | null;
 }) {
   if (typeof window === "undefined") return;
+  const { label, anim } = getVariants();
   // Fire Google Ads conversion immediately so it isn't lost when the
   // browser navigates to the tel: URL.
   trackGoogleAdsCallConversion({
@@ -19,6 +21,8 @@ export async function trackCallClick(opts: {
       page_path: window.location.pathname + window.location.search,
       user_agent: navigator.userAgent.slice(0, 500),
       referrer: document.referrer ? document.referrer.slice(0, 500) : null,
+      ab_label_variant: label,
+      ab_anim_variant: anim,
     });
   } catch {
     /* never block the call */

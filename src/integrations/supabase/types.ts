@@ -14,8 +14,37 @@ export type Database = {
   }
   public: {
     Tables: {
+      ab_impressions: {
+        Row: {
+          anim_variant: string
+          count: number
+          day: string
+          id: string
+          label_variant: string
+          updated_at: string
+        }
+        Insert: {
+          anim_variant: string
+          count?: number
+          day?: string
+          id?: string
+          label_variant: string
+          updated_at?: string
+        }
+        Update: {
+          anim_variant?: string
+          count?: number
+          day?: string
+          id?: string
+          label_variant?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       call_leads: {
         Row: {
+          ab_anim_variant: string | null
+          ab_label_variant: string | null
           created_at: string
           id: string
           page_path: string | null
@@ -25,6 +54,8 @@ export type Database = {
           user_agent: string | null
         }
         Insert: {
+          ab_anim_variant?: string | null
+          ab_label_variant?: string | null
           created_at?: string
           id?: string
           page_path?: string | null
@@ -34,6 +65,8 @@ export type Database = {
           user_agent?: string | null
         }
         Update: {
+          ab_anim_variant?: string | null
+          ab_label_variant?: string | null
           created_at?: string
           id?: string
           page_path?: string | null
@@ -177,6 +210,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      record_ab_impression: {
+        Args: { _anim: string; _label: string }
+        Returns: undefined
       }
     }
     Enums: {

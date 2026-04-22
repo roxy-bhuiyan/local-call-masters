@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, useNavigate, useLocation } from "@tansta
 import { useEffect } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
-import { LayoutDashboard, Phone, FileText, MessageSquareQuote, LogOut, Loader2, ShieldAlert, BarChart3 } from "lucide-react";
+import { LayoutDashboard, Phone, FileText, MessageSquareQuote, LogOut, Loader2, ShieldAlert, BarChart3, FlaskConical } from "lucide-react";
 import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/admin")({
@@ -55,6 +55,7 @@ function AdminLayout() {
     { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
     { to: "/admin/leads", label: "Call Leads", icon: Phone },
     { to: "/admin/reports", label: "Reports", icon: BarChart3 },
+    { to: "/admin/ab-tests", label: "A/B Tests", icon: FlaskConical },
     { to: "/admin/services", label: "Phone Numbers", icon: Phone },
     { to: "/admin/faqs", label: "FAQs", icon: FileText },
     { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },

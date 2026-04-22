@@ -15,6 +15,7 @@ export const Route = createFileRoute("/water-damage")({
   }),
   component: () => (
     <ServicePage
+      dept="water-damage"
       badge="🚨 24/7 Emergency Response"
       title="Water Damage Restoration — On-Site in 60 Minutes"
       subtitle="Flooded basement? Burst pipe? We're IICRC certified, insurance approved, and on the way right now."

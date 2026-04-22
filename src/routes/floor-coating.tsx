@@ -15,6 +15,7 @@ export const Route = createFileRoute("/floor-coating")({
   }),
   component: () => (
     <ServicePage
+      dept="floor-coating"
       badge="✨ 1-Day Install · Lifetime Warranty"
       title="Premium Epoxy Floor Coating"
       subtitle="Transform your garage, basement, or shop in a single day. Stain-proof, slip-resistant, and built to last forever."

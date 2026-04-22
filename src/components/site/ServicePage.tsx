@@ -106,7 +106,7 @@ export function ServicePage(p: ServicePageProps) {
         </div>
       </section>
 
-      <CTASection title="Ready to Fix the Problem?" subtitle="One quick call and we'll be on the way. Live dispatch, no voicemails." />
+      <CTASection title="Ready to Fix the Problem?" subtitle="One quick call and we'll be on the way. Live dispatch, no voicemails." phone={phone} phoneHref={phoneHref} />
 
       <Testimonials />
 
@@ -130,7 +130,7 @@ export function ServicePage(p: ServicePageProps) {
           </div>
           <div className="mt-10 text-center">
             <p className="text-foreground/80 mb-4">Still have questions? Talk to a real person right now.</p>
-            <CallButton size="lg" label="Call Now" />
+            <CallButton size="lg" label="Call Now" phone={phone} phoneHref={phoneHref} />
           </div>
         </div>
       </section>
@@ -140,8 +140,8 @@ export function ServicePage(p: ServicePageProps) {
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">Available 24/7 — Call Now</h2>
           <p className="text-white/90 mb-6">Don't wait until it gets worse. Our team is standing by.</p>
-          <a href={SITE.phoneHref} className="inline-flex items-center gap-3 text-3xl md:text-5xl font-extrabold text-accent hover:underline">
-            <Phone className="h-8 w-8 md:h-12 md:w-12" fill="currentColor" />{SITE.phone}
+          <a href={phoneHref} className="inline-flex items-center gap-3 text-3xl md:text-5xl font-extrabold text-accent hover:underline">
+            <Phone className="h-8 w-8 md:h-12 md:w-12" fill="currentColor" />{phone}
           </a>
         </div>
       </section>

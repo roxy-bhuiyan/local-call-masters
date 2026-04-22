@@ -1,6 +1,7 @@
 import { Phone } from "lucide-react";
 import { SITE } from "@/data/site";
 import { CallButton } from "./CallButton";
+import { trackCallClick } from "@/lib/track-call";
 
 export function StickyCallBar() {
   return (
@@ -20,6 +21,7 @@ export function StickyCallBar() {
       <a
         href={SITE.phoneHref}
         aria-label={`Call ${SITE.phone}`}
+        onClick={() => trackCallClick({ serviceSlug: null, phone: SITE.phone })}
         className="hidden md:flex fixed bottom-6 right-6 z-50 items-center gap-3 bg-cta-gradient text-accent-foreground font-extrabold rounded-full pl-4 pr-6 py-4 shadow-[var(--shadow-cta)] hover:brightness-110 transition-all animate-call-pulse"
       >
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 animate-call-bounce">

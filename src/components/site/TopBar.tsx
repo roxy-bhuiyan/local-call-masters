@@ -3,6 +3,7 @@ import { Phone, MapPin, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { SITE, SERVICES } from "@/data/site";
 import { CallButton } from "./CallButton";
+import { trackCallClick } from "@/lib/track-call";
 
 export function TopBar() {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,11 @@ export function TopBar() {
             <span className="hidden sm:inline">{SITE.areas}</span>
             <span className="sm:hidden">24/7 Service</span>
           </div>
-          <a href={SITE.phoneHref} className="flex items-center gap-2 font-extrabold text-base hover:underline">
+          <a
+            href={SITE.phoneHref}
+            onClick={() => trackCallClick({ serviceSlug: null, phone: SITE.phone })}
+            className="flex items-center gap-2 font-extrabold text-base hover:underline"
+          >
             <Phone className="h-4 w-4 animate-phone-ring" fill="currentColor" />
             <span className="hidden xs:inline uppercase tracking-wide text-[11px] opacity-90">Call:</span>
             <span>{SITE.phone}</span>

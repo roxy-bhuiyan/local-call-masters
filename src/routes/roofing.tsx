@@ -15,6 +15,7 @@ export const Route = createFileRoute("/roofing")({
   }),
   component: () => (
     <ServicePage
+      dept="roofing"
       badge="🏠 Free Roof Inspection"
       title="Trusted Local Roofers — Repairs & Replacements"
       subtitle="Leaks, missing shingles, or storm damage? Free inspection and we work directly with your insurance."

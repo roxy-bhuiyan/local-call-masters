@@ -15,6 +15,7 @@ export const Route = createFileRoute("/plumbing")({
   }),
   component: () => (
     <ServicePage
+      dept="plumbing"
       badge="🚨 24/7 Emergency Plumbers"
       title="Emergency Plumbing Services Near You"
       subtitle="Burst pipe? Clogged drain? No hot water? Our licensed plumbers are dispatched in minutes — not hours."

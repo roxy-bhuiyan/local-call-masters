@@ -15,6 +15,7 @@ export const Route = createFileRoute("/pest-control")({
   }),
   component: () => (
     <ServicePage
+      dept="pest-control"
       badge="🐜 Same-Day Pest Treatment"
       title="Get Rid of Pests — Fast & Safe"
       subtitle="Roaches, ants, rodents, termites, spiders. Pet & family-safe treatments with guaranteed results."

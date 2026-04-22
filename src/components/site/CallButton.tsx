@@ -8,9 +8,13 @@ interface Props {
   variant?: "accent" | "white" | "outline";
   className?: string;
   fullWidth?: boolean;
+  phone?: string;
+  phoneHref?: string;
 }
 
-export function CallButton({ label = "Call Now", size = "md", variant = "accent", className, fullWidth }: Props) {
+export function CallButton({ label = "Call Now", size = "md", variant = "accent", className, fullWidth, phone, phoneHref }: Props) {
+  const displayPhone = phone ?? SITE.phone;
+  const displayHref = phoneHref ?? SITE.phoneHref;
   const sizes = {
     sm: "px-4 py-2 text-sm gap-2",
     md: "px-5 py-3 text-base gap-2",
@@ -24,7 +28,7 @@ export function CallButton({ label = "Call Now", size = "md", variant = "accent"
   };
   return (
     <a
-      href={SITE.phoneHref}
+      href={displayHref}
       className={cn(
         "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap animate-call-pulse",
         sizes[size],
@@ -35,7 +39,7 @@ export function CallButton({ label = "Call Now", size = "md", variant = "accent"
     >
       <Phone className={cn("animate-phone-ring", size === "xl" ? "h-7 w-7" : size === "lg" ? "h-6 w-6" : "h-5 w-5")} fill="currentColor" />
       <span>{label}</span>
-      {(size === "lg" || size === "xl") && <span className="hidden sm:inline">— {SITE.phone}</span>}
+      {(size === "lg" || size === "xl") && <span className="hidden sm:inline">— {displayPhone}</span>}
     </a>
   );
 }

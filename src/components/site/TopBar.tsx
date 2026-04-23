@@ -1,12 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { SITE, SERVICES } from "@/data/site";
+import { useLocation } from "@tanstack/react-router";
+import { SITE, SERVICES, getServicePhone, type ServiceSlug } from "@/data/site";
 import { CallButton } from "./CallButton";
 import { trackCallClick } from "@/lib/track-call";
 
+function useCurrentServicePhone() {
+  const { pathname } = useLocation();
+  const slug = pathname.replace(/^\/+/, "").split("/")[0] as ServiceSlug | "";
+  const match = SERVICES.find((s) => s.slug === slug);
+  if (match) {
+    const { phone, phoneHref } = getServicePhone(match.slug);
+    return { phone, phoneHref, slug: match.slug as ServiceSlug | null };
+  }
+  return { phone: SITE.phone, phoneHref: SITE.phoneHref, slug: null as ServiceSlug | null };
+}
+
 export function TopBar() {
   const [open, setOpen] = useState(false);
+  const { phone, phoneHref, slug } = useCurrentServicePhone();
   return (
     <>
       <div className="bg-primary text-primary-foreground text-sm">
@@ -18,13 +31,13 @@ export function TopBar() {
             <span className="sm:hidden">24/7 Service</span>
           </div>
           <a
-            href={SITE.phoneHref}
-            onClick={() => trackCallClick({ serviceSlug: null, phone: SITE.phone })}
+            href={phoneHref}
+            onClick={() => trackCallClick({ serviceSlug: slug, phone })}
             className="flex items-center gap-2 font-extrabold text-base hover:underline"
           >
             <Phone className="h-4 w-4 animate-phone-ring" fill="currentColor" />
             <span className="hidden xs:inline uppercase tracking-wide text-[11px] opacity-90">Call:</span>
-            <span>{SITE.phone}</span>
+            <span>{phone}</span>
           </a>
         </div>
       </div>
@@ -46,7 +59,7 @@ export function TopBar() {
           </nav>
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">
-              <CallButton size="sm" />
+              <CallButton size="sm" phone={phone} phoneHref={phoneHref} serviceSlug={slug} />
             </div>
             <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-foreground" aria-label="Menu">
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -63,7 +76,7 @@ export function TopBar() {
                 </Link>
               ))}
               <div className="py-3 sm:hidden">
-                <CallButton fullWidth />
+                <CallButton fullWidth phone={phone} phoneHref={phoneHref} serviceSlug={slug} />
               </div>
             </nav>
           </div>

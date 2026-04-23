@@ -84,9 +84,9 @@ function AdminLayout() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 grid lg:grid-cols-[220px,1fr] gap-6">
-        <aside className="lg:sticky lg:top-6 lg:self-start">
-          <nav className="bg-white border border-border rounded-xl p-2 flex lg:flex-col gap-1 overflow-x-auto">
+      <div className="bg-white border-b border-border sticky top-0 z-30">
+        <div className="mx-auto max-w-7xl px-4 py-2">
+          <nav className="flex items-center gap-1 overflow-x-auto">
             {nav.map((n) => {
               const active = n.exact ? location.pathname === n.to : location.pathname.startsWith(n.to);
               return (
@@ -102,7 +102,10 @@ function AdminLayout() {
               );
             })}
           </nav>
-        </aside>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 py-6">
         <main>
           <Outlet />
         </main>

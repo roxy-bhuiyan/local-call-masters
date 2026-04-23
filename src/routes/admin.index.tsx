@@ -64,7 +64,7 @@ function Overview() {
               return (
                 <li key={svc.slug}>
                   <Link
-                    to="/admin/services_/$slug"
+                    to="/admin/department/$slug"
                     params={{ slug: svc.slug }}
                     className="flex items-center justify-between bg-secondary hover:bg-muted rounded-lg px-3 py-2 transition"
                   >

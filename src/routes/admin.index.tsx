@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Phone, TrendingUp, Calendar, FileText } from "lucide-react";
+import { Phone, TrendingUp, Calendar, FileText, ChevronRight } from "lucide-react";
+import { SERVICES } from "@/data/site";
 
 export const Route = createFileRoute("/admin/")({
   component: Overview,
@@ -56,16 +57,26 @@ function Overview() {
 
       <div className="bg-white border border-border rounded-xl p-5">
         <h2 className="font-bold text-foreground mb-3 flex items-center gap-2"><FileText className="h-4 w-4" /> Calls by department</h2>
-        {!stats ? <p className="text-sm text-foreground/60">Loading…</p> : stats.byService.length === 0 ? (
-          <p className="text-sm text-foreground/60">No calls tracked yet.</p>
-        ) : (
+        {!stats ? <p className="text-sm text-foreground/60">Loading…</p> : (
           <ul className="space-y-2">
-            {stats.byService.map((s) => (
-              <li key={s.slug} className="flex items-center justify-between bg-secondary rounded-lg px-3 py-2">
-                <span className="font-semibold text-foreground capitalize">{s.slug.replace(/-/g, " ")}</span>
-                <span className="font-extrabold text-primary">{s.count}</span>
-              </li>
-            ))}
+            {SERVICES.map((svc) => {
+              const count = stats.byService.find((b) => b.slug === svc.slug)?.count ?? 0;
+              return (
+                <li key={svc.slug}>
+                  <Link
+                    to="/admin/department/$slug"
+                    params={{ slug: svc.slug }}
+                    className="flex items-center justify-between bg-secondary hover:bg-muted rounded-lg px-3 py-2 transition"
+                  >
+                    <span className="font-semibold text-foreground">{svc.name}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="font-extrabold text-primary">{count}</span>
+                      <ChevronRight className="h-4 w-4 text-foreground/50" />
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

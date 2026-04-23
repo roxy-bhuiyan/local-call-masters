@@ -110,14 +110,24 @@ function RootComponent() {
   useEffect(() => {
     if (chrome) logImpressionOnce();
   }, [chrome]);
+  useEffect(() => {
+    captureAttributionFromUrl();
+  }, []);
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <GtmNoScript />
       {chrome && <TopBar />}
       <div className={`flex-1 ${chrome ? "pb-20 md:pb-0" : ""}`}>
         <Outlet />
       </div>
       {chrome && <Footer />}
       {chrome && <StickyCallBar />}
+      {chrome && <WhatsAppButton />}
+      {chrome && <EngagementTracker />}
+      {chrome && <ConsentBanner />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
@@ -79,8 +79,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const location = useLocation();
-  const chrome = !location.pathname.startsWith("/admin") && location.pathname !== "/login";
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const chrome = !pathname.startsWith("/admin") && pathname !== "/login";
   useEffect(() => {
     if (chrome) logImpressionOnce();
   }, [chrome]);

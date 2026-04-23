@@ -5,8 +5,20 @@ import appCss from "../styles.css?url";
 import { TopBar } from "@/components/site/TopBar";
 import { Footer } from "@/components/site/Footer";
 import { StickyCallBar } from "@/components/site/StickyCallBar";
-import { googleAdsScriptUrl, googleAdsInitSnippet } from "@/lib/google-ads";
 import { logImpressionOnce } from "@/lib/ab-test";
+import {
+  consentDefaultsSnippet,
+  ga4InitSnippet,
+  ga4ScriptUrl,
+  gtmHeadSnippet,
+  GtmNoScript,
+} from "@/components/site/TrackingScripts";
+import { ConsentBanner } from "@/components/site/ConsentBanner";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { EngagementTracker } from "@/components/site/EngagementTracker";
+import { captureAttributionFromUrl } from "@/lib/attribution";
+import { trackPageView } from "@/lib/datalayer";
+import { SITE } from "@/data/site";
 
 function NotFoundComponent() {
   return (
@@ -51,12 +63,26 @@ export const Route = createRootRoute({
       },
     ],
     scripts: [
-      ...(googleAdsScriptUrl()
-        ? [{ src: googleAdsScriptUrl() as string, async: true }]
-        : []),
-      ...(googleAdsInitSnippet()
-        ? [{ children: googleAdsInitSnippet() as string }]
-        : []),
+      // 1) Consent Mode v2 defaults — MUST run before any tracking script
+      { children: consentDefaultsSnippet() },
+      // 2) GTM container (hub for all events)
+      ...(gtmHeadSnippet() ? [{ children: gtmHeadSnippet() as string }] : []),
+      // 3) gtag.js (GA4 + Google Ads direct fallback)
+      ...(ga4ScriptUrl() ? [{ src: ga4ScriptUrl() as string, async: true }] : []),
+      ...(ga4InitSnippet() ? [{ children: ga4InitSnippet() as string }] : []),
+      // 4) LocalBusiness JSON-LD schema
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: SITE.name,
+          telephone: SITE.phone,
+          areaServed: SITE.areas,
+          openingHours: "Mo-Su 00:00-23:59",
+          priceRange: "$$",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -84,14 +110,24 @@ function RootComponent() {
   useEffect(() => {
     if (chrome) logImpressionOnce();
   }, [chrome]);
+  useEffect(() => {
+    captureAttributionFromUrl();
+  }, []);
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <GtmNoScript />
       {chrome && <TopBar />}
       <div className={`flex-1 ${chrome ? "pb-20 md:pb-0" : ""}`}>
         <Outlet />
       </div>
       {chrome && <Footer />}
       {chrome && <StickyCallBar />}
+      {chrome && <WhatsAppButton />}
+      {chrome && <EngagementTracker />}
+      {chrome && <ConsentBanner />}
     </div>
   );
 }

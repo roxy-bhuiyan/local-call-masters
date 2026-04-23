@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { trackCallClick } from "@/lib/track-call";
 import { animClassesFor, getVariants } from "@/lib/ab-test";
 import { useEffect, useState } from "react";
+import { useCurrentService } from "@/hooks/use-current-service";
 
 interface Props {
   label?: string;
@@ -19,8 +20,11 @@ interface Props {
 }
 
 export function CallButton({ label, size = "md", variant = "accent", className, fullWidth, phone, phoneHref, serviceSlug, fixedLabel }: Props) {
-  const displayPhone = phone ?? SITE.phone;
-  const displayHref = phoneHref ?? SITE.phoneHref;
+  // Auto-resolve from current route when explicit props aren't provided.
+  const current = useCurrentService();
+  const displayPhone = phone ?? current.phone ?? SITE.phone;
+  const displayHref = phoneHref ?? current.phoneHref ?? SITE.phoneHref;
+  const resolvedSlug = serviceSlug ?? current.slug ?? null;
   // Resolve A/B variants on the client only — avoid SSR hydration mismatch.
   const [ab, setAb] = useState<{ label: string; anim: "calm" | "standard" | "intense" }>({
     label: label ?? "Call Now",
@@ -45,7 +49,7 @@ export function CallButton({ label, size = "md", variant = "accent", className, 
   return (
     <a
       href={displayHref}
-      onClick={() => trackCallClick({ serviceSlug: serviceSlug ?? null, phone: displayPhone })}
+      onClick={() => trackCallClick({ serviceSlug: resolvedSlug, phone: displayPhone })}
       className={cn(
         "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap",
         animClasses.wrapper,

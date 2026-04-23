@@ -1,25 +1,14 @@
-import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useLocation } from "@tanstack/react-router";
-import { SITE, SERVICES, getServicePhone, type ServiceSlug } from "@/data/site";
+import { Link } from "@tanstack/react-router";
+import { SITE, SERVICES } from "@/data/site";
 import { CallButton } from "./CallButton";
 import { trackCallClick } from "@/lib/track-call";
-
-function useCurrentServicePhone() {
-  const { pathname } = useLocation();
-  const slug = pathname.replace(/^\/+/, "").split("/")[0] as ServiceSlug | "";
-  const match = SERVICES.find((s) => s.slug === slug);
-  if (match) {
-    const { phone, phoneHref } = getServicePhone(match.slug);
-    return { phone, phoneHref, slug: match.slug as ServiceSlug | null };
-  }
-  return { phone: SITE.phone, phoneHref: SITE.phoneHref, slug: null as ServiceSlug | null };
-}
+import { useCurrentService } from "@/hooks/use-current-service";
 
 export function TopBar() {
   const [open, setOpen] = useState(false);
-  const { phone, phoneHref, slug } = useCurrentServicePhone();
+  const { phone, phoneHref, slug } = useCurrentService();
   return (
     <>
       <div className="bg-primary text-primary-foreground text-sm">

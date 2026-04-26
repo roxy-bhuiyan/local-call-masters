@@ -6,4 +6,10 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+export default defineConfig({
+  // Disable Cloudflare Workers — targeting Vercel (static SPA) instead
+  cloudflare: false,
+  tanstackStart: {
+    spa: { enabled: true },
+  },
+});
